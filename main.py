@@ -17,7 +17,7 @@ def main():
     is_on = True
 
     while is_on:
-        choice = input("What would you like? (small/medium/large): ").lower()
+        choice = input("What would you like? (small/medium/large/report/off): ").lower()
         if choice == "off":
             is_on = False
         elif choice == "report":

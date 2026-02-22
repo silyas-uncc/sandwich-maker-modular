@@ -18,19 +18,28 @@ def main():
 
     while is_on:
         choice = input("What would you like? (small/medium/large/report/off): ").lower()
+        
         if choice == "off":
             is_on = False
+        
         elif choice == "report":
             print(f"Bread: {resources['bread']} slices")
             print(f"Ham: {resources['ham']} slices")
             print(f"Cheese: {resources['cheese']} ounces")
+        
         elif choice in recipes:
             sandwich = recipes[choice]
+
+            # Show cost of sandwich
+            print(f"A {choice} sandwich costs ${sandwich['cost']:.2f}.")
+            
             # Check resources
             if sandwich_maker_instance.check_resources(sandwich["ingredients"]):
+                
                 # Process payment
                 payment = cashier_instance.process_coins()
                 if cashier_instance.transaction_result(payment, sandwich["cost"]):
+                    
                     # Make sandwich
                     sandwich_maker_instance.make_sandwich(choice, sandwich["ingredients"])
         else:
